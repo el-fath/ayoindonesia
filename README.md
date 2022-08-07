@@ -7,55 +7,79 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Ayo Indonesia Technical Test
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is the technical test for join Ayo Indonesia, and hope you enjoy with this project.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirement
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Composer](https://getcomposer.org/).
+- Code editor for doing coding activities [Visual Studio Code](https://code.visualstudio.com/) or [Sublime](https://www.sublimetext.com/) or [Atom](https://atom.io/).
+- Php and Web server for running laravel in web browser, can use [XAMPP](https://www.apachefriends.org/) or [Laragon](https://laragon.org/).
+- [MySQL](https://www.mysql.com/downloads/) for Database Management System.
 
-## Learning Laravel
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Environment
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To set up environment, you'll need .env file on your computer project. use `cp .env.example .env` from the command prompt to create environment files.
 
-## Laravel Sponsors
+```bash
+# Driver Database
+DB_CONNECTION=mysql 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+# Host
+DB_HOST=127.0.0.1
 
-### Premium Partners
+# Port
+DB_PORT=3306 
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+# Name Database
+DB_DATABASE=database
+
+# Username
+DB_USERNAME=root 
+
+# Password
+DB_PASSWORD=password
+```
+
+> **Note**
+> if you need a reference file you can open the file `.env.staging`
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/mataharilabs/asiacommerce-client-management.git
+
+# Go into the repository
+$ cd asiacommerce-client-management
+
+# Install dependencies
+$ composer install
+
+# Run the app
+$ php artisan serve
+```
+
+> **Note**
+> If you're using Windows, use `composer install --ignore-platform-reqs` from the command prompt to install dependencies.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Create your Feature Branch by Issue (`git checkout -b feature/AmazingFeature`)
+2. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+3. Push to the Branch (`git push origin feature/AmazingFeature`)
+4. Open a Pull Request
 
-## Code of Conduct
+> **Note**
+> You can also simply open Pull Request with the tag "enhancement" if it's needed, and you also need at least 1 reviewer to do a `merge pull request`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p align="right">(<a href="#top">back to top</a>)</p>
