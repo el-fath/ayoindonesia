@@ -44,9 +44,6 @@ DB_USERNAME=root
 DB_PASSWORD=password
 ```
 
-> **Note**
-> if you need a reference file you can open the file `.env.staging`
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## How To Use
@@ -55,31 +52,32 @@ To clone and run this application, you'll need [Git](https://git-scm.com) instal
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/mataharilabs/asiacommerce-client-management.git
+$ git clone https://github.com/el-fath/ayoindonesia.git
 
 # Go into the repository
-$ cd asiacommerce-client-management
+$ cd ayoindonesia
+
+# Create the database
+$ create mysql database with name `ayoindonesia`
 
 # Install dependencies
 $ composer install
+
+# Run migration
+$ php artisan migrate
+
+# Install passport for authorization
+$ php artisan passport:install
+
+# Run seeder
+$ php artisan db:seed
 
 # Run the app
 $ php artisan serve
 ```
 
 > **Note**
-> If you're using Windows, use `composer install --ignore-platform-reqs` from the command prompt to install dependencies.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Contributing
-
-1. Create your Feature Branch by Issue (`git checkout -b feature/AmazingFeature`)
-2. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-3. Push to the Branch (`git push origin feature/AmazingFeature`)
-4. Open a Pull Request
-
-> **Note**
-> You can also simply open Pull Request with the tag "enhancement" if it's needed, and you also need at least 1 reviewer to do a `merge pull request`.
+> For the documentation you can access `http://127.0.0.1:8000/api/documentation` after runnning the app,
+> or you can import json collection file in `storage/api-docs/api-docs.json` to your Postman / Insomnia App
 
 <p align="right">(<a href="#top">back to top</a>)</p>
