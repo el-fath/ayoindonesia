@@ -1,0 +1,906 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ayo Indonesia Api",
+        "description": "Ayo Indonesia Api Documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication - OAuth 2"
+                ],
+                "summary": "sign in with oauth 2",
+                "description": "Login by email, password",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "description": "Pass user credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "admin@mail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Authentication - OAuth 2"
+                ],
+                "summary": "logout",
+                "description": "Logout user and invalidate token",
+                "operationId": "authLogout",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/matches": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "get list of matches",
+                "description": "Returns list of matches",
+                "operationId": "getMatchesList",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "create new matches",
+                "description": "create data matches",
+                "operationId": "createMatches",
+                "requestBody": {
+                    "description": "create matches",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "time": {
+                                        "type": "string",
+                                        "format": "datetime",
+                                        "example": "2022-07-28 15:00:00"
+                                    },
+                                    "home": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "away": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "details": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "player_id": {
+                                                    "type": "number",
+                                                    "example": "1"
+                                                },
+                                                "type": {
+                                                    "type": "number",
+                                                    "example": "1"
+                                                },
+                                                "team": {
+                                                    "type": "text",
+                                                    "example": "home"
+                                                },
+                                                "minute": {
+                                                    "type": "number",
+                                                    "example": "30"
+                                                },
+                                                "note": {
+                                                    "type": "text",
+                                                    "example": "free kick goals"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully Created"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/matches/{id}": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "get matches by id",
+                "description": "get matches by id",
+                "operationId": "getMatchesById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "get matches by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "update matches by id",
+                "description": "update matches data",
+                "operationId": "updateMatchesById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "update matches by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "update matches by id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "time": {
+                                        "type": "string",
+                                        "format": "datetime",
+                                        "example": "2022-07-28 15:00:00"
+                                    },
+                                    "home": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "away": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "3"
+                                    },
+                                    "details": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "player_id": {
+                                                    "type": "number",
+                                                    "example": ""
+                                                },
+                                                "type": {
+                                                    "type": "number",
+                                                    "example": ""
+                                                },
+                                                "team": {
+                                                    "type": "text",
+                                                    "example": ""
+                                                },
+                                                "minute": {
+                                                    "type": "number",
+                                                    "example": ""
+                                                },
+                                                "note": {
+                                                    "type": "text",
+                                                    "example": ""
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "example": [
+                                            {
+                                                "action": "create",
+                                                "player_id": 1,
+                                                "type": 1,
+                                                "team": "home",
+                                                "minute": 50
+                                            },
+                                            {
+                                                "id": 11,
+                                                "action": "update",
+                                                "player_id": 1,
+                                                "type": 1,
+                                                "team": "home",
+                                                "minute": 20
+                                            },
+                                            {
+                                                "id": 10,
+                                                "action": "delete",
+                                                "player_id": 2,
+                                                "type": 1,
+                                                "team": "home",
+                                                "minute": 30
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "delete matches by id",
+                "description": "delete matches by Id",
+                "operationId": "deleteMatchesById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "delete matches by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success - No Content"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/players": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "get list of players",
+                "description": "Returns list of players",
+                "operationId": "getPlayerList",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "create new player",
+                "description": "create data player",
+                "operationId": "createPlayer",
+                "requestBody": {
+                    "description": "create player",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Hansamu Yama"
+                                    },
+                                    "height": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "170"
+                                    },
+                                    "weight": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "70"
+                                    },
+                                    "number": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "5"
+                                    },
+                                    "team_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "4"
+                                    },
+                                    "positions": {
+                                        "description": "player positions",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number",
+                                            "format": "number",
+                                            "example": ""
+                                        },
+                                        "example": [
+                                            1,
+                                            2
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully Created"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/players/{id}": {
+            "get": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "get player by id",
+                "description": "get player by id",
+                "operationId": "getPlayerById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "get player by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "update player by id",
+                "description": "update player data",
+                "operationId": "updatePlayerById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "update player by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "update player by id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Hansamu Yama"
+                                    },
+                                    "height": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "170"
+                                    },
+                                    "weight": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "70"
+                                    },
+                                    "number": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "5"
+                                    },
+                                    "team_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "4"
+                                    },
+                                    "positions": {
+                                        "description": "player positions",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number",
+                                            "format": "number",
+                                            "example": ""
+                                        },
+                                        "example": [
+                                            3,
+                                            4
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Players"
+                ],
+                "summary": "delete player by id",
+                "description": "delete player by Id",
+                "operationId": "deletePlayerById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "delete player by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success - No Content"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/teams": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "get list of teams",
+                "description": "Returns list of teams",
+                "operationId": "getTeamList",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "create new team",
+                "description": "create data team",
+                "operationId": "createteam",
+                "requestBody": {
+                    "description": "create team",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "logo",
+                                    "since",
+                                    "address",
+                                    "city_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Persebaya"
+                                    },
+                                    "logo": {
+                                        "type": "file",
+                                        "format": "file",
+                                        "example": ""
+                                    },
+                                    "since": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1973-08-05"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Glora Bung Tomo Surabaya"
+                                    },
+                                    "city_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully Created"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/teams/{id}": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "get team by id",
+                "description": "get team by id",
+                "operationId": "getTeamById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "get team by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "update team by id",
+                "description": "update team data",
+                "operationId": "updateteamById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "update team by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "update team by id",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "logo": {
+                                        "type": "file",
+                                        "format": "file",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Persebaya"
+                                    },
+                                    "since": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1973-08-05"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Glora Bung Tomo Surabaya"
+                                    },
+                                    "city_id": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Content - Validation"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "delete team by id",
+                "description": "delete team by Id",
+                "operationId": "deleteTeamById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "delete team by id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success - No Content"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "get list of users",
+                "description": "user list",
+                "operationId": "7e2f5799553ec93c9c43e2a58490d447",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
